@@ -1,5 +1,7 @@
 # SEBI Enforcement Explorer
 
+[![CI](https://github.com/siddharthgaur1/sebi-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/siddharthgaur1/sebi-explorer/actions/workflows/ci.yml) [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 SEBI (India's securities regulator) publishes thousands of enforcement
 orders on its website, but as an unstructured HTML table with no search, no
 filtering, and no way to see patterns across it. This scrapes the public
