@@ -1,6 +1,30 @@
 # SEBI Enforcement Explorer
 
-[![CI](https://github.com/siddharthgaur1/sebi-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/siddharthgaur1/sebi-explorer/actions/workflows/ci.yml) [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+**Turns SEBI's unstructured HTML wall of enforcement orders into a searchable, charted dashboard — runs fully offline, no API key.**
+
+[![CI](https://github.com/siddharthgaur1/sebi-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/siddharthgaur1/sebi-explorer/actions/workflows/ci.yml) [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![No API key](https://img.shields.io/badge/API%20key-none%20needed-brightgreen)](#quickstart)
+
+> **Live demo:** _pending deploy to Hugging Face Spaces (free CPU)._ No key, no
+> setup — a seed snapshot of **real, public** SEBI orders ships in the repo, so the
+> dashboard below is live the moment it loads. Screenshot is that app running
+> locally, unedited.
+
+![SEBI Explorer dashboard: filters, order counts, violation-type mix](assets/demo.png)
+
+## Quickstart
+
+```bash
+git clone https://github.com/siddharthgaur1/sebi-explorer
+cd sebi-explorer
+pip install -r requirements.txt
+streamlit run src/app.py          # a real seed database is already committed
+```
+
+No API key, no database setup, no cloud services — it reads a committed SQLite
+snapshot of public SEBI orders. To rebuild the full corpus yourself:
+`python scripts/scrape.py --all` (polite crawl of sebi.gov.in).
+
+---
 
 SEBI (India's securities regulator) publishes thousands of enforcement
 orders on its website, but as an unstructured HTML table with no search, no
@@ -106,3 +130,7 @@ an empty chart with no explanation.
 - [querypilot](https://github.com/siddharthgaur1/querypilot) — natural language to SQL agent.
 - [rail-graph](https://github.com/siddharthgaur1/rail-graph) — graph-theoretic analysis of a railway network.
 - [ipo-gmp](https://github.com/siddharthgaur1/ipo-gmp) — XGBoost IPO listing-return predictor.
+
+## Security
+
+Read-only public-data dashboard, no auth, no LLM, no secrets. `gitleaks` history scan: 0 findings. `pip-audit`: clean. The committed seed database holds SEBI's own **public** enforcement orders (each with its source URL) — nothing private or fabricated. Full notes: [SECURITY.md](SECURITY.md).
