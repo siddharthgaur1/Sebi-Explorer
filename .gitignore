@@ -6,10 +6,18 @@ venv/
 .env
 *.db
 *.pkl
+# Exception: a small seed snapshot of real, public SEBI orders is committed so the
+# demo works offline without re-scraping the SEBI website on every boot.
+!data/sebi_orders.db
 .vscode/
 .idea/
+.serena/
+.ipynb_checkpoints/
+.DS_Store
 *.egg-info/
 dist/
 build/
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
 
