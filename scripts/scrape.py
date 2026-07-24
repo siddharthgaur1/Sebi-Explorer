@@ -13,7 +13,7 @@ import argparse
 import re
 import sqlite3
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
@@ -109,7 +109,7 @@ def parse_listing_page(html: str) -> list[dict]:
         # parse date
         order_date, year, month = None, None, ""
         try:
-            dt = datetime.strptime(date_text, "%b %d, %Y")
+            dt = datetime.strptime(date_text, "%b %d, %Y")  # noqa: DTZ007 - date-only field, no time/tz in the source
             order_date = dt.date().isoformat()
             year       = dt.year
             month      = dt.strftime("%B")
@@ -124,7 +124,7 @@ def parse_listing_page(html: str) -> list[dict]:
             "entity":         extract_entity(title),
             "violation_type": classify(title),
             "url":            url,
-            "scraped_at":     datetime.utcnow().isoformat(),
+            "scraped_at":     datetime.now(timezone.utc).isoformat(),
         })
     return rows
 
@@ -158,7 +158,7 @@ def scrape(max_pages: int = 8):
         try:
             resp = session.get(url, timeout=20)
             resp.raise_for_status()
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - a scrape page failure ends the run cleanly, not a crash
             print(f"FAILED: {e}")
             break
 

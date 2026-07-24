@@ -142,7 +142,7 @@ with t1:
         yearly = df.groupby("year").size().reset_index(name="count").sort_values("year")
         fig = px.bar(yearly, x="year", y="count", color_discrete_sequence=["#1f2937"],
                      labels={"year": "Year", "count": "Orders"})
-        fig.update_layout(showlegend=False, plot_bgcolor="white", height=300, margin=dict(t=10, b=10))
+        fig.update_layout(showlegend=False, plot_bgcolor="white", height=300, margin={"t": 10, "b": 10})
         st.plotly_chart(fig, use_container_width=True)
 
     with c2:
@@ -151,7 +151,7 @@ with t1:
         fig2 = px.bar(vt, x="count", y="violation_type", orientation="h",
                       color_discrete_sequence=["#1f2937"],
                       labels={"count": "Orders", "violation_type": "Type"})
-        fig2.update_layout(showlegend=False, plot_bgcolor="white", height=300, margin=dict(t=10, b=10))
+        fig2.update_layout(showlegend=False, plot_bgcolor="white", height=300, margin={"t": 10, "b": 10})
         st.plotly_chart(fig2, use_container_width=True)
 
     c3, c4 = st.columns(2)
@@ -165,7 +165,7 @@ with t1:
         fig4 = px.bar(top_entities, x="count", y="entity", orientation="h",
                       color_discrete_sequence=["#374151"],
                       labels={"count": "Orders", "entity": ""})
-        fig4.update_layout(showlegend=False, plot_bgcolor="white", height=380, margin=dict(t=10, b=10))
+        fig4.update_layout(showlegend=False, plot_bgcolor="white", height=380, margin={"t": 10, "b": 10})
         st.plotly_chart(fig4, use_container_width=True)
 
     with c4:
@@ -183,7 +183,7 @@ with t1:
                              color="orders",
                              color_continuous_scale="reds",
                              labels={"orders": "Order count", "entity": ""})
-            fig_rep.update_layout(plot_bgcolor="white", height=380, margin=dict(t=10, b=10),
+            fig_rep.update_layout(plot_bgcolor="white", height=380, margin={"t": 10, "b": 10},
                                   showlegend=False)
             st.plotly_chart(fig_rep, use_container_width=True)
 
@@ -204,12 +204,12 @@ with t2:
 
     fig_heat = px.imshow(
         heat,
-        labels=dict(x="Month", y="Year", color="Orders"),
+        labels={"x": "Month", "y": "Year", "color": "Orders"},
         color_continuous_scale="Blues",
         text_auto=True,
         aspect="auto",
     )
-    fig_heat.update_layout(height=400, margin=dict(t=10, b=10))
+    fig_heat.update_layout(height=400, margin={"t": 10, "b": 10})
     st.plotly_chart(fig_heat, use_container_width=True)
 
     # Rolling 3-month trend
@@ -221,9 +221,9 @@ with t2:
     fig_roll.add_trace(go.Bar(x=monthly["date"], y=monthly["count"],
                               name="Monthly", marker_color="#D1D5DB"))
     fig_roll.add_trace(go.Scatter(x=monthly["date"], y=monthly["rolling_3m"],
-                                  name="3-month avg", line=dict(color="#1f2937", width=2)))
-    fig_roll.update_layout(plot_bgcolor="white", height=280, margin=dict(t=10, b=10),
-                           legend=dict(orientation="h"))
+                                  name="3-month avg", line={"color": "#1f2937", "width": 2}))
+    fig_roll.update_layout(plot_bgcolor="white", height=280, margin={"t": 10, "b": 10},
+                           legend={"orientation": "h"})
     st.plotly_chart(fig_roll, use_container_width=True)
 
 # ═══════════════════════════
@@ -263,7 +263,7 @@ with t3:
         st.subheader("Penalties by Violation Type")
         fig_pt = px.bar(pen_by_type, x="Total (₹ Cr)", y="violation_type",
                         orientation="h", color_discrete_sequence=["#1f2937"])
-        fig_pt.update_layout(plot_bgcolor="white", height=350, margin=dict(t=10, b=10))
+        fig_pt.update_layout(plot_bgcolor="white", height=350, margin={"t": 10, "b": 10})
         st.plotly_chart(fig_pt, use_container_width=True)
 
 # ═══════════════════════════
@@ -326,19 +326,19 @@ with t4:
             fig_g = go.Figure(
                 data=[
                     go.Scatter(x=edge_x, y=edge_y, mode="lines",
-                               line=dict(color="#D1D5DB", width=0.8), hoverinfo="none"),
+                               line={"color": "#D1D5DB", "width": 0.8}, hoverinfo="none"),
                     go.Scatter(x=node_x, y=node_y, mode="markers+text",
-                               marker=dict(size=node_sizes, color="#1f2937",
-                                           line=dict(color="white", width=1)),
+                               marker={"size": node_sizes, "color": "#1f2937",
+                                           "line": {"color": "white", "width": 1}},
                                text=list(G.nodes), textposition="top center",
                                hovertext=node_text, hoverinfo="text",
-                               textfont=dict(size=9)),
+                               textfont={"size": 9}),
                 ],
                 layout=go.Layout(
                     showlegend=False, hovermode="closest",
-                    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-                    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-                    plot_bgcolor="white", height=550, margin=dict(t=10, b=10),
+                    xaxis={"showgrid": False, "zeroline": False, "showticklabels": False},
+                    yaxis={"showgrid": False, "zeroline": False, "showticklabels": False},
+                    plot_bgcolor="white", height=550, margin={"t": 10, "b": 10},
                 ),
             )
             st.plotly_chart(fig_g, use_container_width=True)
@@ -381,6 +381,7 @@ with t5:
     )
     try:
         import io
+
         import openpyxl  # noqa: F401 -- import only to detect availability; raises ImportError if missing
         buf = io.BytesIO()
         df[display_cols].to_excel(buf, index=False, engine="openpyxl")
