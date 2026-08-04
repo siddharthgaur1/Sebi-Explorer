@@ -105,6 +105,20 @@ an empty chart with no explanation.
   vs. absolute URLs, lakh-vs-crore conversion, unmatched titles). Added
   `tests/` with fixtures instead of live requests.
 
+## Results
+
+No precision/recall number exists for the regex entity/penalty extraction
+yet — see "What I'd improve" below, this is the single biggest measurement
+gap in the repo. What's verified: `pytest tests/ -v` runs
+`scrape.py`'s parsing/classification and `app.py`'s penalty-regex against
+static HTML fixtures (never live requests).
+
+## Limitations
+
+Entity and penalty extraction are both regex-based "best-effort" (see Design
+decisions) with no measured accuracy — treat extracted entities/penalties as
+approximate, not ground truth. Full detail in "What I'd improve" below.
+
 ## What I'd improve with more time
 
 1. **Entity extraction and penalty extraction are both regex, both
