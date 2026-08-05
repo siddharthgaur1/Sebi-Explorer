@@ -1,5 +1,10 @@
 # SEBI Enforcement Explorer
 
+
+![SEBI Explorer dashboard showing filters, orders-by-year and violation-type charts over real enforcement orders](docs/demo.png)
+
+<sub>Live demo, real public SEBI orders.</sub>
+
 **Turns SEBI's unstructured HTML wall of enforcement orders into a searchable, charted dashboard — runs fully offline, no API key.**
 
 [![CI](https://github.com/siddharthgaur1/sebi-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/siddharthgaur1/sebi-explorer/actions/workflows/ci.yml) [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![No API key](https://img.shields.io/badge/API%20key-none%20needed-brightgreen)](#quickstart)
