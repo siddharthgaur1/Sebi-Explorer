@@ -124,7 +124,7 @@ Entity and penalty extraction are both regex-based "best-effort" (see Design
 decisions) with no measured accuracy — treat extracted entities/penalties as
 approximate, not ground truth. Full detail in "What I'd improve" below.
 
-## What I'd improve with more time
+## Limitations
 
 1. **Entity extraction and penalty extraction are both regex, both
    "best-effort."** A real evaluation set (manually labeled entity/penalty
